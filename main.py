@@ -17,7 +17,7 @@ try:
     image_url_UHD = image_url_1920x1080.replace("1920x1080", "UHD")
     image_name = image_data['images'][0]['enddate']
 
-    dir_path = os.path.expanduser('~') + '/Pictures/必应壁纸/'
+    dir_path = './'
 
     file_path_1920x1080 = dir_path + "1920x1080/" + image_name + '.jpg'
     file_path_1920x1200 = dir_path + "1920x1200/" + image_name + '.jpg'
