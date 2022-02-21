@@ -2,6 +2,7 @@ import json
 import os
 import urllib.request
 import requests
+import uuid
 
 url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US"
 
@@ -48,6 +49,7 @@ try:
     if os.path.exists(json_path) is False:
         with open(json_path, "wb+") as file:
             file.write(json_data.encode())
-
+    with open(dir_path + "uuid", "w+") as file_uuid:
+        file.write(uuid.uuid1())
 except:
     print("Error!")
