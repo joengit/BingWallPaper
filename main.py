@@ -50,6 +50,6 @@ try:
         with open(json_path, "wb+") as file:
             file.write(json_data.encode())
     with open(dir_path + "uuid", "w+") as file_uuid:
-        file_uuid.write(uuid.uuid1())
+        file_uuid.write(uuid.uuid1().hex)
 except:
     print("Error!")
