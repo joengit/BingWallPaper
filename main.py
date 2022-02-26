@@ -7,8 +7,11 @@ import uuid
 url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US"
 
 
-json_data = requests.get(url).text
-image_data = json.loads(json_data)
+try:
+    json_data = requests.get(url).text
+    image_data = json.loads(json_data)
+except:
+    pass
 
 image_url_1920x1080 = 'http://www.bing.com' + \
     image_data['images'][0]['url']
@@ -37,16 +40,36 @@ if not os.path.exists(dir_path + "json/"):
     os.makedirs(dir_path + "json/")
 '''
 
-if os.path.exists(file_path_1920x1080) is False:
-    urllib.request.urlretrieve(
-        image_url_1920x1080, filename=file_path_1920x1080)
-if os.path.exists(file_path_1920x1200) is False:
-    urllib.request.urlretrieve(
-        image_url_1920x1200, filename=file_path_1920x1200)
-if os.path.exists(file_path_UHD) is False:
-    urllib.request.urlretrieve(image_url_UHD, filename=file_path_UHD)
-if os.path.exists(json_path) is False:
-    with open(json_path, "wb+") as file:
-        file.write(json_data.encode())
-with open(dir_path + "uuid", "w+") as file_uuid:
-    file_uuid.write(uuid.uuid1().hex)
+try:
+    if os.path.exists(file_path_1920x1080) is False:
+        urllib.request.urlretrieve(
+            image_url_1920x1080, filename=file_path_1920x1080)
+except:
+    pass
+
+try:
+    if os.path.exists(file_path_1920x1200) is False:
+        urllib.request.urlretrieve(
+            image_url_1920x1200, filename=file_path_1920x1200)
+except:
+    pass
+
+try:
+    if os.path.exists(file_path_UHD) is False:
+        urllib.request.urlretrieve(image_url_UHD, filename=file_path_UHD)
+except:
+    pass
+
+try:
+    if os.path.exists(json_path) is False:
+        with open(json_path, "wb+") as file:
+            file.write(json_data.encode())
+except:
+    pass
+
+try:
+    with open(dir_path + "uuid", "w+") as file_uuid:
+        file_uuid.write(uuid.uuid1().hex)
+except:
+    pass
+
